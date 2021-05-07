@@ -17,7 +17,7 @@ import com.google.gson.JsonObject;
 
 public class LicenceVerif {
 
-	private final String URL = "https://preprod.groupez.dev/api/v1/licence/%s";
+	private final String URL = "https://groupez.dev/api/v1/licence/%s";
 	private final String licence;
 	private String status;
 	private String message;
