@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import com.google.gson.JsonObject;
 
 public class LicenceVerif {
 
-	private final String URL = "https://groupez.dev/api/v1/licence/%s";
+	private final String URL = "https://preprod.groupez.dev/api/v1/licence/%s";
 	private final String licence;
 	private String status;
 	private String message;
@@ -82,13 +83,23 @@ public class LicenceVerif {
 	}
 
 	/**
+	 * Get address
+	 * 
+	 * @return address
+	 * @throws UnknownHostException
+	 */
+	public String getAddress() throws UnknownHostException {
+		InetAddress inetAddress;
+		inetAddress = InetAddress.getLocalHost();
+		return inetAddress.getHostAddress();
+	}
+
+	/**
 	 * Check
 	 */
 	public void check() {
-		InetAddress inetAddress;
 		try {
-			inetAddress = InetAddress.getLocalHost();
-			String adresse = inetAddress.getHostAddress();
+			String adresse = this.getAddress();
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("adresse", adresse);
 
