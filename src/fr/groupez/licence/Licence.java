@@ -14,7 +14,6 @@ public class Licence {
 			System.out.println(licenceVerif.getMessage());
 		});
 		System.out.println("Start licence check with key : " + licence);
-		System.out.println("Your IP: " + licenceVerif.getAddress());
 	}
 
 }
