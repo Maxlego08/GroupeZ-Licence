@@ -17,6 +17,7 @@ public class LicenceVerif {
 
 	private final String URL = "https://groupez.dev/api/v1/licence/%s";
 	private final String licence;
+	private final String uniqueId;
 	private String status;
 	private String message;
 	private boolean isValid;
@@ -24,10 +25,12 @@ public class LicenceVerif {
 
 	/**
 	 * @param licence
+	 * @param uniqueId
 	 */
-	public LicenceVerif(String licence) {
+	public LicenceVerif(String licence, String uniqueId) {
 		super();
 		this.licence = licence;
+		this.uniqueId = uniqueId;
 	}
 
 	/**
@@ -86,6 +89,7 @@ public class LicenceVerif {
 	public void check() {
 		try {
 			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("unique_id", this.uniqueId);
 			Map<String, String> response = this.sendData(jsonObject, this.licence);
 			if (response.containsKey("status")) {
 				this.status = response.get("status");
